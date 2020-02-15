@@ -28,39 +28,53 @@ Create a pod named *web* using the nginx:1.16.1 and schedule this pod on a node 
 
 ## Question 5
 
-Create a yml file and save it at /tmp/CKAQA/CKAQAq5.txt that creates a pod which has an Init Container. The init container should create a file at /opt/bonjour.txt which contains the text "Bonjour Monsieur" - use any image you like for this (Hint: use *busybox:1.28*)
+Create a yml file and save it at /tmp/CKAQA/CKAQAq5.yml that creates a pod which has an Init container. The Init container should create a file at /opt/bonjour.txt which contains the text "Bonjour Monsieur".
 
-Add another container based on *busybox:1.28* that checks this file exists and has the contents specified above and exits if it does not
+Add another container to the same pod with an image of *busybox:1.28* that checks the file has the contents specified above and exits if it doesn't match "Bonjour Monsieur".
+
+(Hint: You may have to create a volume to store this file?)
+(Hint2: You can use "if grep -q 'Bonjour Monsieur' /opt/bonjour.txt; then echo 'Found it'; sleep 180; else exit 44; fi" to check the file)
 
 ---
 
 ## Question 6
 
-Specify the pod to create a name in the namespace test, containing four specified mirror nginx, redis, memcached, busybox
+Create a deployment called nginx4 in the namespace *ckaexam2* based on nginx:latest with 4 replicas and labels tier=web & app=nginx.
+
+Create a file at /tmp/CKAQA/CKAQAq6.txt that has a list of the pods of this deployment sorted by Pod IP and has the following custom columns
+
+* Pod Name
+* Pod Status
+* Pod Creation Time
+* Labels
 
 ---
 
 ## Question 7
 
-Create a pod name Test, the mirror is Nginx, Volume name cache-volume is hanging in / data directory, and Volume is the non-Persistent
+Create a Daemon Set
+Check running on all nodes
 
 ---
 
 ## Question 8
 
-List pod in the Service named test and find out using one of the highest CPU utilization, the pod written to the file name
+Create a configmap which is exported into the a pod as an environment variable TEAM=arsenal.
+
+The pod should run alstard/teamdemo image and you should expose the pod as a service such that you can load a webpage in your browser
+on http://localhost:8888 and check the correct image is displayed.
 
 ---
 
 ## Question 9
 
-Create a Pod name for nginx-app, mirroring as nginx, and nginx-app create a Service named according pod, type is NodePort
+Create a secret.... Decrypt a file which says "shhhh... this is a secret. Don't tell anyone!"
 
 ---
 
 ## Question 10
 
-Create a nginx's Workload, to ensure that run on each node, careful not to overwrite the original node Tolerations
+Drain a node - ensure all Daemonsets are drained too
 
 ---
 
@@ -96,7 +110,7 @@ Node1 node 15. Although not scheduled, and redistributed on the pod node
 
 ## Question 16
 
-Use etcdctl to backup your ETCD Cluster (provided enpoints, ca, cert, key)
+Use etcdctl to backup your ETCD Cluster (provided endpoints, ca, cert, key)
 
 ---
 
